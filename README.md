@@ -1,4 +1,4 @@
 # digital-crafters
 psd to html
 
-bogdandor/digital-crafters.github.io
+https://bogdandor.github.io/digital-crafters
