@@ -565,6 +565,8 @@
 	width: 100%;
 	margin: 0;
 	overflow-x: hidden;
+	pointer-events: none;
+	user-select: none;
 }
 .slider__item { 
 	flex-shrink: 0;
@@ -573,6 +575,9 @@
 }
 .slider__item:first-child { margin-left: 50%; }
 .slider__item--active { opacity: 1; }
+.slider__item--smooth {
+	transition: all .5s linear;
+}
 .slider__control {
 	margin: 45px auto 0 auto;
 	display: inline-flex;

@@ -63,9 +63,10 @@ function slider(sliderItem) {
 	}
 	setTimeout(function() {
 		for (let i=0; i<items.length; i++) {
-			items[i].style['transition'] = 'all .5s linear';
+			items[i].classList.add('slider__item--smooth');
 		}	
 	}, 0);
+	swipe(sliderItem);
 
 	function setItem(newValue) {
 		if (newValue < 0 || newValue >= items.length) {
@@ -92,5 +93,70 @@ function slider(sliderItem) {
 			items[i].style['transform'] = 'translateX(calc(' + left + '% - ' + ml + 'px))';
 		}
 	}
-}
 
+	function swipe(sliderItem) {
+		sliderItem.addEventListener('touchstart', lock, {passive: false});
+		sliderItem.addEventListener('touchmove', drag, {passive: false});
+		sliderItem.addEventListener('touchend', move, false);
+	
+		let x0 = null;
+		let y0 = null;
+		let locked = false;
+		let isVertical = false;
+		let isHorizontal = false;
+		
+		function lock(e) {
+			x0 = unify(e).clientX;
+			y0 = unify(e).clientY;
+			locked = true;
+		}
+	
+		function drag(e) {
+			for (let i=0; i<items.length; i++) {
+				items[i].classList.remove('slider__item--smooth');
+			}		
+			if (isVertical) {
+				return;
+			}
+			e.preventDefault();
+			if (Math.abs(Math.round(unify(e).clientX - x0)) > 10) {
+				isHorizontal = true;
+			} else if (Math.abs(Math.round(unify(e).clientY - y0)) > 10) {
+				isVertical = true;
+			}
+			if (isHorizontal && locked) {
+				const marginLeft = parseInt(window.getComputedStyle(items[current], null)['margin-left'], 10);
+				const left = -50 - (current * 100);
+				const ml = marginLeft*current;
+				let tx = Math.round(unify(e).clientX - x0);
+				for (let i=0; i<items.length; i++) {
+					items[i].style['transform'] = 'translateX(calc(' + left + '% - ' + (ml - tx) + 'px))';
+				}
+			}
+		}
+
+		function move(e) {
+			if (isHorizontal && locked) {
+				for (let i=0; i<items.length; i++) {
+					items[i].classList.add('slider__item--smooth');
+				}			
+				let dx = unify(e).clientX - x0;
+				let s = Math.sign(dx);
+				if ((current > 0 || s < 0) && (current < items.length-1 || s > 0)) {
+					setItem(current - s);
+				} else {
+					setItem(current);
+				}
+			}
+			locked = false;
+			x0 = null;
+			y0 = null;
+			isHorizontal = false;
+			isVertical = false;
+		}
+		
+		function unify(e) {
+			return e.changedTouches ? e.changedTouches[0] : e;
+		}
+	}	
+}
