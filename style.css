@@ -17,6 +17,9 @@
 .logo__img {
 	width: 20px;
 	height: 20px;
+	background-image: url("img/logo.png");
+	background-size: cover;
+	background-repeat: no-repeat;
 }
 .logo__text {
 	margin-left: 6px;
@@ -339,6 +342,7 @@
 	height: 90px;
 	margin: 0 auto;
 	display: block;
+	background-color: #41bfe7;
 	border-radius: 50%;
 }
 @media (min-width: 375px) {
@@ -366,11 +370,38 @@
 	border-radius: 5px;
 	box-shadow: 0 11px 35px rgba(34, 34, 34, 0.44);
 }
-.orion__logo { 
+.orion__logo {
+	position: relative;
 	width: 89px;
 	height: 89px;
 	margin: -44px auto 0 auto;
-	border-radius: 50%; 
+	background-color: #41bfe7;
+	background-size: 34px;
+	background-position: center;
+	background-repeat: no-repeat;
+	border-radius: 50%;
+}
+.orion__logo--journal {
+	background-image: url("img/orion-journal.png");
+}
+.orion__logo--home-page {
+	background-image: url("img/orion-home-page.png");
+}
+.orion__logo--megaphone {
+	background-image: url("img/orion-megaphone.png");
+}
+.orion__logo--browser-window {
+	background-image: url("img/orion-browser-window.png");
+}
+.orion__logo--bookmark-archive {
+	background-image: url("img/orion-bookmark-archive.png");
+}
+.orion__logo-img {
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	width: 34px;
+	transform: translate(-50%, -50%);
 }
 .orion__title {
 	margin: 4px 0 0 0;
@@ -408,7 +439,9 @@
 		width: 109px;
 		height: 109px;
 		margin: -55px 0 0 0;
+		background-size: 42px;
 	}
+	.orion__logo-img { width: 42px; }
 	.orion__title {
 		margin: 17px 0 0 0;
 		width: 180px;
@@ -468,6 +501,11 @@
 	width: 39px;
 	height: 39px;
 	margin: 0;
+	background-color: #41bfe7;	
+	background-image: url("img/flash-21.png");
+	background-size: 15px;
+	background-position: center;
+	background-repeat: no-repeat;
 	border-radius: 50%;
 }
 .work__title {
@@ -537,6 +575,7 @@
 		width: 77px;
 		height: 77px;
 		margin: 0;
+		background-size: 28px;
 	}
 	.work__title {
 		margin: 12px 0 0 0;
@@ -792,8 +831,8 @@
 .about__slider-content {
 	padding-top: 90px;
 	background-position: top;
-	background-image: url("https://via.placeholder.com/96x90");
-	background-size: 96px 90px;
+	background-image: url("img/quote-green.png");
+	background-size: 96px;
   background-repeat: no-repeat;
 }
 @media (min-width: 375px) {
@@ -832,8 +871,7 @@
 	.about__slider-content {
 		padding-top: 130px;
 		background-position: calc(50% - 500px) top;
-		background-image: url("https://via.placeholder.com/192x179");
-		background-size: 192px 179px;
+		background-size: 192px;
 		background-repeat: no-repeat;
 	}
 }
@@ -987,6 +1025,19 @@
 .form__icon {
 	position: absolute;
 	margin: 24px 0 0 24px;
+	width: 16px;
+	height: 20px;
+	background-position: center;
+	background-repeat: no-repeat;
+}
+.form__icon--name {
+	background-image: url("img/icon-name.png");
+}
+.form__icon--mail {
+	background-image: url("img/icon-mail.png");
+}
+.form__icon--textarea {
+	background-image: url("img/icon-textarea.png");
 }
 .form__input:first-child { margin-top: 0; }
 .form__input::placeholder {
